@@ -32,7 +32,7 @@ public class SecurityConfiguration  {
 		  .csrf(csrf -> csrf.disable())
           .authorizeHttpRequests(
         	  authorize -> authorize
-              .requestMatchers("/api/auth/signup", "/myapi/**").permitAll()
+              .requestMatchers("/api/auth/signup").permitAll()
 
               .anyRequest().authenticated() // Require authentication for any other request
 

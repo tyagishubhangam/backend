@@ -13,7 +13,7 @@ import java.util.Set;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/myapi/user/{profileId}")
+@RequestMapping("/api/profile/{profileId}")
 @RequiredArgsConstructor
 public class CoursesController {
    private final ProfileService profileService;
