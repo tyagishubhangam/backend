@@ -32,7 +32,8 @@ public class SecurityConfiguration  {
 		  .csrf(csrf -> csrf.disable())
           .authorizeHttpRequests(
         	  authorize -> authorize
-              .requestMatchers("/api/auth/signup").permitAll() 
+              .requestMatchers("/api/auth/signup", "/myapi/**").permitAll()
+
               .anyRequest().authenticated() // Require authentication for any other request
 
           ).addFilterBefore(customAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

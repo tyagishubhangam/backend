@@ -1,22 +1,11 @@
 package com.naval_innovators.your_exam_sathi.auth_service.models;
 import java.time.LocalDate;
+import java.util.Set;
 import java.util.UUID;
 
 import com.naval_innovators.your_exam_sathi.auth_service.models.enums.Gender;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Index;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -64,7 +53,12 @@ public class Profile {
 	@ManyToOne
 	@JoinColumn(name = "college_id")
 	private College college;
-	@ManyToOne
-	@JoinColumn(name = "course_id")
-	private Course course;
+	@ManyToMany
+	@JoinTable(
+			name = "profile_courses", // Join table name
+			joinColumns = @JoinColumn(name = "profile_id"), // Foreign key for Profile
+			inverseJoinColumns = @JoinColumn(name = "course_id") // Foreign key for Course
+	)
+	private Set<Course> courses;
+
 }
